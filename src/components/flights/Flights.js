@@ -26,7 +26,7 @@ class Flights extends Component {
 
   componentDidMount() {
     this.setState({ loading: true })
-    const flightsRef = this.props.firebase.flights()
+    const flightsRef = this.props.firebase.flightsDesc()
     flightsRef.onSnapshot(snapshot => this.setState({ flights: snapshot.docs, loading: false }))
   }
 
@@ -43,7 +43,7 @@ class Flights extends Component {
   renderFlightCards(flights) {
     if (flights) {
       return flights.map((flight) => {
-        return <FlightCard details={flight.data()} />
+        return <FlightCard key={flight.id} flightId={flight.id} details={flight.data()} />
       })
     }
   }

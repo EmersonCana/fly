@@ -37,7 +37,12 @@ const styles = {
 */
 class HeaderSearch extends Component {
   state = {
-    focused: false
+    focused: false,
+    query: ''
+  }
+
+  handleChange = (e) => {
+    this.setState({ query:e.target.value })
   }
 
   render() {
@@ -51,6 +56,8 @@ class HeaderSearch extends Component {
             placeholder="Search"
             onFocus={this.focus.bind(this)}
             onBlur={this.unfocus.bind(this)}
+            value={this.state.query}
+            onChange={this.handleChange}
           />
         </Box>
       </div>

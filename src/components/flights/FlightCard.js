@@ -7,6 +7,11 @@ import { mdiAirplane } from '@mdi/js'
 import { Box } from '@material-ui/core'
 import { Overlay } from '.'
 import { grey } from '@material-ui/core/colors'
+import VoteFlight from './VoteFlight'
+import DeleteFlight from './DeleteFlight'
+import EditFlight from './EditFlight'
+import { withFirebase } from '../../firebase'
+
 
 const cardHeight = 300
 const cardWidth = 236
@@ -61,7 +66,8 @@ class FlightCard extends Component {
   }
 
   render() {
-    const { details } = this.props
+    
+    const { details, flightId } = this.props
     const { hovered } = this.state
     return (
       <div style={styles.container}
@@ -69,16 +75,23 @@ class FlightCard extends Component {
         onMouseLeave={this.unhover.bind(this)}
       >
         <Box style={styles.card}>
-          {this.renderFlight(details)}
+          {this.renderFlight(details, flightId)}
         </Box>
         <Overlay show={hovered} style={styles.overlay} styleShown={styles.overlayShown} styleHidden={styles.overlayHidden} />
       </div>
     )
   }
 
-  renderFlight(details) {
+  renderFlight(details, flightId) {
     return (
       <div style={{ height: '97%', width: '97%', borderRadius: 8, backgroundColor: grey[200] }}>
+        <div style={{ height: '10%', width: '90%', position: 'absolute', display: 'flex', justifyContent: 'space-between', zIndex: '1'}}>
+          <VoteFlight flightId={flightId}/>
+          <EditFlight flightId={flightId} details={details}/>
+          <DeleteFlight flightId={flightId}/>
+          
+          
+        </div>
         <div style={{ height: '65%', fontFamily: 'Open Sans Condensed', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 120 }}>
           {details.current}
         </div>
