@@ -55,7 +55,7 @@ class Firebase {
     user = await user.get()
     return user.data()
   }
-
+ 
   addPost = async (uid, postid) => {
     const user = await this.user(uid)
     return await user.update({ posts: firestore.FieldValue.arrayUnion(postid) })

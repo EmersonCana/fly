@@ -7,6 +7,8 @@ import { mdiAirplane } from '@mdi/js'
 import { Box } from '@material-ui/core'
 import { Overlay } from '.'
 import { grey } from '@material-ui/core/colors'
+import VoteFlight from './VoteFlight'
+import CloseIcon from '@material-ui/icons/Close';
 
 const cardHeight = 300
 const cardWidth = 236
@@ -48,6 +50,13 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     fontSize: 12
+  },
+  actionButton: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingTop: '6px',
+    paddingLeft: '6px',
+    paddingRight: '6px',
   }
 }
 
@@ -78,7 +87,11 @@ class FlightCard extends Component {
 
   renderFlight(details) {
     return (
-      <div style={{ height: '97%', width: '97%', borderRadius: 8, backgroundColor: grey[200] }}>
+      <div style={{ height: '100%', width: '97%', borderRadius: 8, backgroundColor: grey[200] }}>
+        <div style={styles.actionButton}>
+          <VoteFlight />
+          <CloseIcon />
+        </div>
         <div style={{ height: '65%', fontFamily: 'Open Sans Condensed', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 120 }}>
           {details.current}
         </div>
